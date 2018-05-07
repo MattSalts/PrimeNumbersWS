@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PrimeNumberServiceService WSDL service -->
+
+  <service name="PrimeNumberService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://primenumbers.mattsalts.com"/>
+      <parameter name="wsdlServiceElement" value="PrimeNumberServiceService"/>
+      <parameter name="schemaQualified" value="http://primenumbers.mattsalts.com"/>
+      <parameter name="wsdlServicePort" value="PrimeNumberService"/>
+      <parameter name="className" value="com.mattsalts.primenumbers.PrimeNumberService"/>
+      <parameter name="wsdlPortType" value="PrimeNumberService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://primenumbers.mattsalts.com" xmlns:retNS="http://primenumbers.mattsalts.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getPrimeNumbers" qname="operNS:getPrimeNumbers" returnQName="retNS:getPrimeNumbersReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://primenumbers.mattsalts.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:limit" type="tns:int"/>
+        <parameter xmlns:pns="http://primenumbers.mattsalts.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:identifier" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="getPrimeNumbers"/>
+
+  </service>
+</deployment>
